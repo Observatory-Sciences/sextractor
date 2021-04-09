@@ -15,15 +15,15 @@ Check out the on-line [documentation], the [official web page], and the [user fo
 
 ## Statically-linked Windows build with OpenBLAS
 
-This is a fork of SExtractor containing CMake files to be able to compile a the
-program statically on Linux targeting Windows using OpenBLAS as a BLAS/LAPACK
-implementation.  It is also possible to use the CMake files to build a
-statically linked version of SExtractor for Linux using OpenBLAS.
+This is a fork of SExtractor with modifications to compile the program
+statically on Linux targeting Windows using OpenBLAS as the BLAS/LAPACK
+implementation.  It is also possible to build a statically linked version of
+SExtractor for Linux using OpenBLAS.
 
 Rather than using the original SExtractors autotools configuration, this
 respository has been set up with some CMake files to control the build process.
-This is all a bit janky so your mileage may vary.  Both builds are known to work
-on Fedora 33 with:
+This is all a bit janky so your mileage may vary.  Both builds (targeting
+either Windows or Linux) are known to work on Fedora 33 with:
 
     ```
     > cmake --version

@@ -417,7 +417,9 @@
 #include <math.h>
 #endif
 #include "stdio.h"
+#define NO_OLDNAMES
 #include "string.h"
+#undef NO_OLDNAMES
 #include "wcsmath.h"
 #include "wcstrig.h"
 #include "sph.h"

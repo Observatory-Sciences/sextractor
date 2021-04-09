@@ -58,7 +58,7 @@ int	main(int argc, char *argv[])
 		**argkey, **argval,
 		*pstr;
 
-setlinebuf(stdout);
+// setlinebuf(stdout);
  if (argc<2)
     {
     fprintf(OUTPUT, "\n         %s  version %s (%s)\n", BANNER,MYVERSION,DATE);

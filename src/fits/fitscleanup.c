@@ -164,7 +164,9 @@ void	install_cleanup(void (*func)(void))
 /* Catch CTRL-Cs */
   signal(SIGINT, signal_function);
 /* Catch bus errors */
+#ifndef WIN32
   signal(SIGBUS, signal_function);
+#endif
 /* Catch segmentation faults */
   signal(SIGSEGV, signal_function);
 /* Catch floating exceptions */
@@ -195,9 +197,11 @@ void	signal_function(int signum)
     case SIGINT:
       fprintf(stderr, "^C\n");
       exit(-1);
+#ifndef WIN32
     case SIGBUS:
       fprintf(stderr, "bus error\n");
       exit(-1);
+#endif
     case SIGSEGV:
       fprintf(stderr, "segmentation fault\n");
       exit(-1);

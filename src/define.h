@@ -26,12 +26,12 @@
 *
 *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-/* Check if we are using a configure script here */
-#ifndef HAVE_CONFIG_H
-#define		VERSION		"2.x"
-#define		DATE		"2009-03-31"
-#define		THREADS_NMAX	1024		/* max. number of threads */
-#endif
+// /* Check if we are using a configure script here */
+// #ifndef HAVE_CONFIG_H
+// #define		VERSION		"2.x"
+// #define		DATE		"2009-03-31"
+// #define		THREADS_NMAX	1024		/* max. number of threads */
+// #endif
 
 /*------------------------ what, who, when and where ------------------------*/
 
@@ -164,6 +164,17 @@
 		{free(ptr); \
 		ptr = NULL;}
 
+#ifndef WIN32
+#define	QFREE16(ptr) \
+		{free(ptr); \
+		ptr = NULL;}
+#else
+#define	QFREE16(ptr) \
+		{_aligned_free(ptr); \
+		ptr = NULL;}
+#endif
+
+
 #define	QCALLOC(ptr, typ, nel) \
 		{if (!(ptr = (typ *)calloc((size_t)(nel),sizeof(typ)))) \
 		   { \
@@ -184,6 +195,7 @@
                    }; \
                  }
 
+#ifndef WIN32
 #define	QMALLOC16(ptr, typ, nel) \
 		{if (posix_memalign((void **)&ptr, 16, (size_t)(nel)*sizeof(typ))) \
 		   { \
@@ -193,6 +205,17 @@
 		   error(EXIT_FAILURE, "Could not allocate memory for ", gstr);\
                    }; \
                  }
+#else
+#define	QMALLOC16(ptr, typ, nel) \
+		{if (!(ptr = _aligned_malloc((size_t)(nel)*sizeof(typ), 16))) \
+		   { \
+		   sprintf(gstr, #ptr " (" #nel "=%lld elements) " \
+			"at line %d in module " __FILE__ " !", \
+			(size_t)(nel)*sizeof(typ), __LINE__); \
+		   error(EXIT_FAILURE, "Could not allocate memory for ", gstr);\
+                   }; \
+                 }
+#endif
 
 #define	QREALLOC(ptr, typ, nel) \
 		{if (!(ptr = (typ *)realloc(ptr, (size_t)(nel)*sizeof(typ))))\

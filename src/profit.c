@@ -134,22 +134,22 @@ void	profit_end(profitstruct *profit)
 
   for (p=0; p<profit->nprof; p++)
     prof_end(profit->prof[p]);
-  free(profit->modpix);
-  free(profit->modpix2);
-  free(profit->cmodpix);
-  free(profit->psfpix);
-  free(profit->lmodpix);
-  free(profit->lmodpix2);
-  free(profit->objpix);
-  free(profit->objweight);
-  free(profit->dgeopix[0]);
-  free(profit->dgeopix[1]);
-  free(profit->resi);
-  free(profit->presi);
-  free(profit->prof);
-  free(profit->covar);
+  QFREE16(profit->modpix);
+  QFREE16(profit->modpix2);
+  QFREE16(profit->cmodpix);
+  QFREE16(profit->psfpix);
+  QFREE16(profit->lmodpix);
+  QFREE16(profit->lmodpix2);
+  QFREE16(profit->objpix);
+  QFREE16(profit->objweight);
+  QFREE16(profit->dgeopix[0]);
+  QFREE16(profit->dgeopix[1]);
+  QFREE16(profit->resi);
+  QFREE16(profit->presi);
+  QFREE(profit->prof);
+  QFREE16(profit->covar);
   QFFTWF_FREE(profit->psfdft);
-  free(profit);
+  QFREE(profit);
 
   return;
   }
@@ -3697,7 +3697,7 @@ int	profit_covarunboundtobound(profitstruct *profit,
       }
     }
 
-  free(dxdy);
+  QFREE16(dxdy);
 
   profit->nlimmin = nmin;
   profit->nlimmax = nmax;
@@ -3953,10 +3953,10 @@ void	prof_end(profstruct *prof)
   {
   if (prof->pix)
     {
-    free(prof->pix);
-    free(prof->kernelbuf);
+    QFREE(prof->pix);
+    QFREE16(prof->kernelbuf);
     }
-  free(prof);
+  QFREE(prof);
 
   return;
   }

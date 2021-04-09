@@ -38,7 +38,9 @@
 #endif
 #include	<stdio.h>
 #include	<stdlib.h>
+#define NO_OLDNAMES
 #include	<string.h>
+#undef NO_OLDNAMES
 
 #include	"fits/fitscat_defs.h"
 #include	"fits/fitscat.h"

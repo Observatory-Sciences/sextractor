@@ -28,11 +28,11 @@
 *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 /* Check if we are using a configure script here */
-#ifndef HAVE_CONFIG_H
-#define		VERSION		"2.0"
-#define		DATE		"2003-x-x"
-#define		HAVE_SYS_MMAN_H	1
-#endif
+// #ifndef HAVE_CONFIG_H
+// #define		VERSION		"2.0"
+// #define		DATE		"2003-x-x"
+// #define		HAVE_SYS_MMAN_H	1
+// #endif
 
 /*------------------------ what, who, when and where ------------------------*/
 

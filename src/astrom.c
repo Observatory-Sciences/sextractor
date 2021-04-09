@@ -32,7 +32,9 @@
 
 #include	<math.h>
 #include	<stdlib.h>
+#define NO_OLDNAMES
 #include	<string.h>
+#undef NO_OLDNAMES
 
 #include 	"wcs/wcs.h"
 #include	"define.h"

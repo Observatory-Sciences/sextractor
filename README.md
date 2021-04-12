@@ -69,7 +69,7 @@ Second, you will need a "CMake toolchain file" for your system referencing these
 For example:
 
     ```
-    # file: mibgw-w64-x84_64.cmake
+    # file: mingw-w64-x86_64.cmake
     set(CMAKE_SYSTEM_NAME Windows)
     set(TOOLCHAIN_PREFIX x86_64-w64-mingw32)
 
@@ -120,8 +120,8 @@ For fftw3 we can use cmake so run the following the `$TOP/fftw3` directory:
     > mkdir build && cd build
     > cmake .. \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$ROOT/opt/mingw
-        -DCMAKE_TOOLCHAIN_FILE=$ROOT/mingw-w64-x86_64.cmake \
+        -DCMAKE_INSTALL_PREFIX=$TOP/opt/mingw
+        -DCMAKE_TOOLCHAIN_FILE=$TOP/mingw-w64-x86_64.cmake \
         -DBUILD_SHARED_LIBS=OFF \
         -DENABLE_FLOAT=ON
     ...
